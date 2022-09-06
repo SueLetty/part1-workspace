@@ -1,10 +1,9 @@
-import javax.xml.transform.stream.StreamSource;
-
 public class Television {
   private String brand;
   private int volume;
 
   public void turnOn(){
+    boolean isConnected = verifyInternetConnection();
     System.out.println("The " + brand + " Television is on, with a volume of " + volume);
   }
   public void turnOff(){
@@ -27,7 +26,13 @@ public class Television {
     this.volume = volume;
   }
 
+
+  private boolean verifyInternetConnection(){
+    return true;
+  }
+  @Override
   public String toString(){
+
     return "Television: brand=" + brand + ", volume=" + volume;
   }
 }
