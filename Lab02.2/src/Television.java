@@ -6,6 +6,8 @@ public class Television {
   private static int instanceCount = 0;
   private String brand;
   private int volume;
+  private boolean isMute;
+  private int oldVolume;
 
   public Television(){
 
@@ -36,7 +38,22 @@ public class Television {
   }
 
   public void setBrand(String brand) {
-    this.brand = brand;
+//    if(brand.equals("Samsung") || brand.equals("LG") || brand.equals("Sony") || brand.equals("Toshiba")){
+//      this.brand = brand;
+//    }else{
+//      System.out.printf("Error!! Samsung, LG, Toshiba, and Sony are valid brands");
+//    }
+    switch(brand){
+      case "Samsung":
+      case "LG":
+      case "Toshiba":
+      case "Sony":
+        this.brand = brand;
+        break;
+      default:
+        System.out.printf("%s is not a valid brand; only Samsung, LG, Toshiba, and Sony are allowed.%n", brand);
+    }
+
   }
 
   public int getVolume() {
@@ -45,20 +62,34 @@ public class Television {
 
   public void setVolume(int volume) {
     if(volume < MIN_VOLUME || volume > MAX_VOLUME){
-      System.out.printf("%d is invalidl the volume must be between %d and %d (inclusive).", volume, MIN_VOLUME,MAX_VOLUME);
+      System.out.printf("%d is invalid the volume must be between %d and %d (inclusive).", volume, MIN_VOLUME,MAX_VOLUME);
     } else{
       this.volume = volume;
+      isMute = false;
     }
 
   }
 
+  public boolean isMute() {
+    return isMute;
+  }
+  public void mute(){
+    if(!isMute()){
+      oldVolume = getVolume();
+      setVolume(0);
+      isMute =true;
+    }else{
+      setVolume(oldVolume);
+      isMute = false;
+    }
+  }
 
   private boolean verifyInternetConnection(){
     return true;
   }
   @Override
   public String toString(){
-
-    return "Television: brand=" + brand + ", volume=" + volume;
+    String volumeString = isMute() ? "<muted>" : String.valueOf(getVolume());
+    return "Television: brand=" + getBrand() + ", volume=" + volumeString;
   }
 }
