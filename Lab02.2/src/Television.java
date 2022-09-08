@@ -8,6 +8,7 @@ public class Television {
   private int volume;
   private boolean isMute;
   private int oldVolume;
+  private DisplayType display = DisplayType.LED;
 
   public Television(){
 
@@ -20,6 +21,10 @@ public class Television {
     this(brand);
     //this.volume = volume;
     setVolume(volume);
+  }
+  public Television(String brand, int volume, DisplayType display){
+    this(brand, volume);
+    setDisplay(display);
   }
   public void turnOn(){
     boolean isConnected = verifyInternetConnection();
@@ -70,6 +75,14 @@ public class Television {
 
   }
 
+  public DisplayType getDisplay() {
+    return display;
+  }
+
+  public void setDisplay(DisplayType display) {
+    this.display = display;
+  }
+
   public boolean isMute() {
     return isMute;
   }
@@ -90,6 +103,6 @@ public class Television {
   @Override
   public String toString(){
     String volumeString = isMute() ? "<muted>" : String.valueOf(getVolume());
-    return "Television: brand=" + getBrand() + ", volume=" + volumeString;
+    return "Television: brand=" + getBrand() + ", volume=" + volumeString + ", display=" + getDisplay();
   }
 }
