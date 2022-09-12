@@ -14,6 +14,9 @@
  */
 import java.time.*;
 import java.time.format.*;
+import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalAdjusters;
+
 import static java.time.temporal.TemporalAdjusters.*;
 
 class DerivedDateTimeTest {
@@ -23,12 +26,12 @@ class DerivedDateTimeTest {
      * To run one test method at a time, uncomment the call to the one you want to execute.
      */
     public static void main(String[] args) {
-        // testPresidentsFirst100Days();
-        // testPopularBirthdays();
-        // testEarlyRetirement();
-        // testLaborDay();
-        // testElectionDay();
-        // testAnniversary();
+         testPresidentsFirst100Days();
+         testPopularBirthdays();
+         testEarlyRetirement();
+         testLaborDay();
+         testElectionDay();
+         testAnniversary();
     }
 
     /**
@@ -39,6 +42,9 @@ class DerivedDateTimeTest {
      */
     public static void testPresidentsFirst100Days() {
         // TODO
+        LocalDate presidentDay = LocalDate.of(2017,1,20);
+        LocalDate presidentDay100 = presidentDay.plusDays(100);
+        System.out.println(presidentDay100);
     }
 
     /**
@@ -50,8 +56,12 @@ class DerivedDateTimeTest {
      */
     public static void testPopularBirthdays() {
         // TODO: what is the average birthday of someone conceived on Valentine's Day?
+        LocalDate valentines = LocalDate.of(2022, 2, 14);
+        System.out.println(valentines.plusWeeks(38));
 
         // TODO: what is the average birthday of someone conceived on New Year's Eve (after midnight)?
+        LocalDate newYearsDay = LocalDate.of(2022,1,1);
+        System.out.println(newYearsDay.plusWeeks(38));
     }
 
     /**
@@ -63,6 +73,9 @@ class DerivedDateTimeTest {
      */
     public static void testEarlyRetirement() {
         // TODO
+        LocalDate birthday = LocalDate.of(1989,11,29);
+        LocalDate retirement    = birthday.plusYears(59).plusMonths(6);
+        System.out.println(retirement);
     }
 
     /**
@@ -74,6 +87,11 @@ class DerivedDateTimeTest {
      */
     public static void testLaborDay() {
         // TODO
+        LocalDate laborDay = LocalDate.of(1989,11,29)
+            .with(ChronoField.MONTH_OF_YEAR,9)
+            .with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY));
+        System.out.println(laborDay);
+
     }
 
     /**
@@ -84,6 +102,10 @@ class DerivedDateTimeTest {
      */
     public static void testElectionDay() {
         // TODO
+        LocalDate electionDay = LocalDate.of(2024,11,1)
+            .with(TemporalAdjusters.firstInMonth(DayOfWeek.TUESDAY))
+            .with(TemporalAdjusters.nextOrSame(DayOfWeek.TUESDAY));
+        System.out.println(electionDay);
     }
 
     /**
@@ -96,5 +118,11 @@ class DerivedDateTimeTest {
      */
     public static void testAnniversary() {
         // TODO
+        LocalDate wedding = LocalDate.of(2020,11,14);
+        LocalDate anniversary = wedding.plusYears(50)
+            .plusYears(50)
+            .with(TemporalAdjusters.nextOrSame((DayOfWeek.SATURDAY)));
+        System.out.println(anniversary);
+
     }
 }
