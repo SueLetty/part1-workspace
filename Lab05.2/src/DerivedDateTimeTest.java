@@ -123,6 +123,5 @@ class DerivedDateTimeTest {
             .plusYears(50)
             .with(TemporalAdjusters.nextOrSame((DayOfWeek.SATURDAY)));
         System.out.println(anniversary);
-
     }
 }
