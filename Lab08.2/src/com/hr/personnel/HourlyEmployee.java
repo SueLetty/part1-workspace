@@ -1,6 +1,7 @@
 package com.hr.personnel;
 
 import java.time.LocalDate;
+import org.w3c.dom.ls.LSOutput;
 
 public class HourlyEmployee extends Employee {
   private double rate;
@@ -18,6 +19,9 @@ public class HourlyEmployee extends Employee {
     this(name, hireDate);
     setHours(hours);
     setRate(rate);
+  }
+  public void pay(){
+    System.out.printf("%s is paid hourly, for a total of %,.2f%n", getName(), getHours() * getRate());
   }
   public double getRate() {
     return rate;
@@ -37,6 +41,7 @@ public class HourlyEmployee extends Employee {
 
   @Override
   public String toString() {
-    return super.toString() + ", rate=$" + getRate() + ", hours=" + getHours();
+//    return super.toString() + ", rate=$" + getRate() + ", hours=" + getHours();
+    return String.format("%s, rate=%.2f, hours=%.1f",super.toString(), getRate(),getHours());
   }
 }

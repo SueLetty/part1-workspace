@@ -16,6 +16,9 @@ public class SalariedEmployee extends Employee {
     this(name, hireDate);
     setSalary(salary);
   }
+  public void pay(){
+    System.out.printf("%s is paid a salary of %,.2f%n",getName(),getSalary());
+  }
   public double getSalary() {
     return salary;
   }
