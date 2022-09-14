@@ -32,4 +32,9 @@ public class SalariedEmployee extends Employee {
 //    return super.toString() + ", Salary=$" + getSalary();
     return String.format("%s, salary=$%,.2f", super.toString(), getSalary());
   }
+
+  @Override
+  public void payTaxes() {
+    System.out.printf("%s: taxes = %.2f%n", getName(),getSalary()*SALARIED_TAX_RATE);
+  }
 }

@@ -6,7 +6,7 @@
  * Copyright LearningPatterns Inc.
  */
 
-package com.hr.personnel;
+package com.hr.corp.personnel;
 
 import java.time.LocalDate;
 

@@ -6,9 +6,8 @@
  * Copyright LearningPatterns Inc.
  */
 
-package com.hr.personnel;
+package com.hr.corp.personnel;
 
-import gov.irs.TaxPayer;
 import java.time.LocalDate;
 
 /**
@@ -22,7 +21,7 @@ import java.time.LocalDate;
  *   void work()        simulates work by printing a message to show it was called.
  *   String toString()  self-explanatory.
  */
-public abstract class Employee implements TaxPayer {
+public abstract class Employee {
     // fields
     private String name;
     private LocalDate hireDate;
@@ -40,17 +39,7 @@ public abstract class Employee implements TaxPayer {
     public void work() {
         System.out.println(getName() + " working hard since " + getHireDate());
     }
-
-    /*
-     * Need to declare THAT "all employees get paid," BUT up here in the base class,
-     * we can't implement it, because we simply have no financial data to get the dollar amount.
-     *
-     * Consequences:
-     *  1. All subclasses MUST have an implemented pay() method (or they are also abstract).
-     *  2. Employee itself cannot be instantiated, i.e., no direct instances of Employee (via new).
-     */
     public abstract void pay();
-
     // accessor methods
     public String getName() {
         return name;
@@ -70,6 +59,7 @@ public abstract class Employee implements TaxPayer {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": name=" + getName() + ", hireDate=" + getHireDate();
+//        return "Employee: name=" + getName() + ", hireDate=" + getHireDate();
+        return String.format("%s: name=%s, hireDate=%s",getClass().getSimpleName(),getName(),getHireDate());
     }
 }

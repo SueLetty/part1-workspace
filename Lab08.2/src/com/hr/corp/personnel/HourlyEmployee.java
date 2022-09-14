@@ -1,7 +1,6 @@
-package com.hr.personnel;
+package com.hr.corp.personnel;
 
 import java.time.LocalDate;
-import org.w3c.dom.ls.LSOutput;
 
 public class HourlyEmployee extends Employee {
   private double rate;

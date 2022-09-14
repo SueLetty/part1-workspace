@@ -6,7 +6,7 @@
  * Copyright LearningPatterns Inc.
  */
 
-package com.hr.personnel;
+package com.hr.corp.personnel;
 
 /**
  * The Department class manages employees.
@@ -52,7 +52,6 @@ public class Department {
             employees[i].work();
         }
     }
-
     public void payEmployees() {
         for (int i = 0; i < currentIndex; i++) {
             employees[i].pay();
