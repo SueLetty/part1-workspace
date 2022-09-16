@@ -12,14 +12,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * The Department class manages employees.
- *
+ * The Department class manages employees.*
  * Properties:
  *   String name
  *   String location
  *   Employee[] employees  the Employees in this department.
  *   int currentIndex      internal counter for number of employees in the department.
- *
+
  * Methods (excluding get/set methods):
  *   void listEmployees()  print info on all employees in the department.
  *   void workEmployees()  make all employees in the department work.
@@ -29,10 +28,11 @@ public class Department {
     // fields
     private String name;
     private String location;
-    private Collection<Employee> employees = new ArrayList<>();
-//    private int currentIndex = 0;  // for dealing with the array
+    private final Collection<Employee> employees = new ArrayList<>();
+    // for dealing with the array
 
     // constructors
+    @SuppressWarnings("unused")
     public Department() {
     }
 
