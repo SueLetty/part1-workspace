@@ -8,14 +8,22 @@
 
 package com.data.io;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FilterOutputStream;
+import java.io.IOException;
+
 public class PersonDataClient {
 
     /**
      * To run one method at a time, uncomment the call to the one you want to execute.
      */
     public static void main(String[] args) {
-        // writeData();
-        // readData();
+         writeData();
+         readData();
     }
 
     /**
@@ -30,6 +38,16 @@ public class PersonDataClient {
      */
     private static void writeData() {
         // TODO
+        try(DataOutputStream out = new DataOutputStream(new FileOutputStream("person.dat"))){
+            out.writeUTF("Xiuxiang");
+            out.writeInt(21);
+            out.writeDouble(5.5);
+            out.writeBoolean(true);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -43,5 +61,18 @@ public class PersonDataClient {
      */
     private static void readData() {
         // TODO
+        try(DataInputStream in = new DataInputStream(new FileInputStream("person.dat"))){
+            String name = in.readUTF();
+            int age = in.readInt();
+            double shoeSize = in.readDouble();
+            boolean isMarried = in.readBoolean();
+
+//            System.out.println("name: " + name + ", age: " + age + ", shoe size: " + shoeSize + ", isMarried: " + isMarried);
+            System.out.printf("name: %s, age: %d, shoe size: %.1f, isMarried:  %b%n", name, age, shoeSize,isMarried);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
